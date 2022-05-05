@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.StartFragment">
+    tools:context=".screens.start.StartFragment">
 
     <TextView
         android:id="@+id/start_label"
@@ -18,6 +18,7 @@
         android:textSize="@dimen/app_large_text"
         android:layout_margin="@dimen/app_margin"/>
     <Button
+        android:id="@+id/btn_room"
         android:layout_width="@dimen/width_btn_room"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"

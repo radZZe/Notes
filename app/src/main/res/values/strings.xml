@@ -5,4 +5,5 @@
     <string name="add_new_note_btn">Добавить</string>
     <string name="start_label">Что использовать?</string>
     <string name="room_btn">ROOM</string>
+    <string name="title_app">Заметки</string>
 </resources>
