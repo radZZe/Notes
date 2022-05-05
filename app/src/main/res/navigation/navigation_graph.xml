@@ -9,7 +9,7 @@
         android:id="@+id/addNewNoteFragment"
         android:name="com.mimoza_app.notes.radzze.screens.AddNewNoteFragment"
         android:label="fragment_add_new_note2"
-        tools:layout="@layout/fragment_add_new_note2" >
+        tools:layout="@layout/fragment_add_new_note" >
         <action
             android:id="@+id/action_addNewNoteFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
