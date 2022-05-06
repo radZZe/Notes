@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mimoza_app.notes.radzze.R
 import com.mimoza_app.notes.radzze.databinding.FragmentStartBinding
+import com.mimoza_app.notes.radzze.utilits.APP_ACTIVITY
 import com.mimoza_app.notes.radzze.utilits.TYPE_ROOM
 
 class StartFragment : Fragment() {
@@ -34,8 +35,16 @@ class StartFragment : Fragment() {
     private fun initialization() {
         mViewModel = ViewModelProvider(this)[StartFragmentViewModel::class.java]
         mBinding.btnRoom.setOnClickListener{
-            mViewModel.initDatabase(TYPE_ROOM)
+            mViewModel.initDatabase(TYPE_ROOM){
+                APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
         }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

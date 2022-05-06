@@ -6,4 +6,5 @@
     <string name="start_label">Что использовать?</string>
     <string name="room_btn">ROOM</string>
     <string name="title_app">Заметки</string>
+    <string name="toast_enter_name">Enter name!</string>
 </resources>

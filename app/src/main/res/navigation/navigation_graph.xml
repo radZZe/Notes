@@ -3,11 +3,11 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/addNewNoteFragment"
-        android:name="com.mimoza_app.notes.radzze.screens.AddNewNoteFragment"
+        android:name="com.mimoza_app.notes.radzze.screens.addnewnote.AddNewNoteFragment"
         android:label="fragment_add_new_note2"
         tools:layout="@layout/fragment_add_new_note" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mimoza_app.notes.radzze.screens.MainFragment"
+        android:name="com.mimoza_app.notes.radzze.screens.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action

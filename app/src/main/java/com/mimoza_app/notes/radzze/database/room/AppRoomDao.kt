@@ -6,7 +6,7 @@ import com.mimoza_app.notes.radzze.models.AppNote
 
 @Dao
 interface AppRoomDao {
-    @Query("SELECT * FROM note_tables")
+    @Query("SELECT * from notes_tables")
     fun getAllNotes():LiveData<List<AppNote>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

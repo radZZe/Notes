@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,13 +39,13 @@ android {
 dependencies {
     def roomVersion = "2.4.2"
 
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+//    implementation("androidx.room:room-runtime:$roomVersion")
+
 
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$roomVersion")
-
+    kapt("androidx.room:room-compiler:$roomVersion")
     // optional - RxJava2 support for Room
     implementation("androidx.room:room-rxjava2:$roomVersion")
 
