@@ -1,5 +1,6 @@
 package com.mimoza_app.notes.radzze.screens.start
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.mimoza_app.notes.radzze.R
 import com.mimoza_app.notes.radzze.databinding.FragmentStartBinding
-import com.mimoza_app.notes.radzze.utilits.APP_ACTIVITY
-import com.mimoza_app.notes.radzze.utilits.TYPE_ROOM
+import com.mimoza_app.notes.radzze.utilits.*
 
 class StartFragment : Fragment() {
 
@@ -36,6 +36,25 @@ class StartFragment : Fragment() {
         mBinding.btnRoom.setOnClickListener{
             mViewModel.initDatabase(TYPE_ROOM){
                 APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
+        }
+        mBinding.btnFirebase.setOnClickListener{
+            mBinding.inputEmail.visibility = View.VISIBLE
+            mBinding.inputPassword.visibility = View.VISIBLE
+            mBinding.btnLogin.visibility = View.VISIBLE
+            mBinding.btnLogin.setOnClickListener{
+                val inputEmail = mBinding.inputEmail.text.toString()
+                val inputPassword = mBinding.inputPassword.text.toString()
+                if(inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
+                    EMAIL = inputEmail
+                    PASSWORD = inputPassword
+                    mViewModel.initDatabase(TYPE_FIREBASE){
+                        showToast("INIT OK")
+//                        APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+                    }
+                }else{
+                    showToast("Enter a email and password!!")
+                }
             }
         }
     }

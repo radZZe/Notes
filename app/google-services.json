@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "206555558849",
+    "firebase_url": "https://noteapp-78f37-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "noteapp-78f37",
+    "storage_bucket": "noteapp-78f37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206555558849:android:36ae19cd37758758de3540",
+        "android_client_info": {
+          "package_name": "com.mimoza_app.notes.radzze"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206555558849-mr2483hv04buu2gt2sb5rfvj0oagah1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY-7c634_kMkMaAD59cg8sHPi-oB_eikM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206555558849-mr2483hv04buu2gt2sb5rfvj0oagah1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
