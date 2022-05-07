@@ -1,10 +1,8 @@
 package com.mimoza_app.notes.radzze.screens.main
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +34,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initialization(){
-
+        setHasOptionsMenu(true)
         setupRecyclerView()
         mObserver = Observer{
             mainAdapter.submitList(it.asReversed())
@@ -46,6 +44,22 @@ class MainFragment : Fragment() {
         mBinding.btnAddNote.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.exit_btn ->{
+                mViewModel.signOut()
+                APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupRecyclerView(){

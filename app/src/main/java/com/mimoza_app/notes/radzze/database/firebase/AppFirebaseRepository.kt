@@ -2,39 +2,55 @@ package com.mimoza_app.notes.radzze.database.firebase
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.mimoza_app.notes.radzze.database.DatabaseRepository
 import com.mimoza_app.notes.radzze.models.AppNote
-import com.mimoza_app.notes.radzze.utilits.EMAIL
-import com.mimoza_app.notes.radzze.utilits.PASSWORD
-import com.mimoza_app.notes.radzze.utilits.showToast
+import com.mimoza_app.notes.radzze.utilits.*
+import java.lang.RuntimeException
 
 class AppFirebaseRepository:DatabaseRepository {
 
-    private var mAuth = FirebaseAuth.getInstance()
 
-    override val allNotes: LiveData<List<AppNote>>
-        get() = TODO("Not yet implemented")
+//    init{
+//        AUTH = FirebaseAuth.getInstance()
+//    }
+
+    override val allNotes: LiveData<List<AppNote>> = AllNotesFirebaseLiveData()
 
     override suspend fun insert(note: AppNote, onSuccess: () -> Unit) {
-        TODO("Not yet implemented")
+        val idNote = REF_DATABASE.push().key.toString()
+        val mapNote = hashMapOf<String,Any>()
+        mapNote[ID_FIREBASE] = idNote
+        mapNote[NAME] = note.name
+        mapNote[TEXT] = note.text
+        REF_DATABASE.child(idNote)
+            .updateChildren(mapNote)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener{showToast(it.message.toString())}
     }
 
     override suspend fun delete(note: AppNote, onSuccess: () -> Unit) {
-        TODO("Not yet implemented")
+        REF_DATABASE.child(note.idFirebase).removeValue()
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener{ showToast(it.message.toString())}
     }
 
     override fun connectToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {
-        mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD)
+        AUTH = FirebaseAuth.getInstance()
+        AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener{
-                mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
+                AUTH.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                     .addOnSuccessListener {onSuccess()}
                     .addOnFailureListener{ onFail(it.message.toString())}
             }
+        CURRENT_ID = AUTH.currentUser?.uid.toString()
+        REF_DATABASE = FirebaseDatabase.getInstance().reference
+            .child(CURRENT_ID)
     }
 
     override fun signOut() {
-        mAuth.signOut()
+        AUTH.signOut()
 
     }
 }
