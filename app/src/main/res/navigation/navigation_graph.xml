@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_add_new_note" >
         <action
             android:id="@+id/action_addNewNoteFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -31,12 +33,14 @@
     </fragment>
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.mimoza_app.notes.radzze.screens.NoteFragment"
+        android:name="com.mimoza_app.notes.radzze.screens.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
         <action
             android:id="@+id/action_noteFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph" />
     </fragment>
     <fragment
         android:id="@+id/startFragment"
@@ -45,6 +49,7 @@
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/navigation_graph" />
     </fragment>
 </navigation>

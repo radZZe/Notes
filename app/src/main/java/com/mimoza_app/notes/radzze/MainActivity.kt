@@ -11,7 +11,7 @@ import com.mimoza_app.notes.radzze.utilits.APP_ACTIVITY
 class MainActivity : AppCompatActivity() {
 
     lateinit var mToolBar: Toolbar
-    lateinit var mNavController: NavController
+    lateinit var navController: NavController
     private var _binding: ActivityMainBinding? = null
     val mBinding get() = _binding!!
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         mToolBar = mBinding.toolbar
-        mNavController = Navigation.findNavController(this, R.id.nav_host)
+        navController = Navigation.findNavController(this, R.id.nav_host)
         setSupportActionBar(mToolBar)
         title = getString(R.string.title_app)
     }

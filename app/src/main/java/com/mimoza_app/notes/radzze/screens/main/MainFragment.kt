@@ -12,6 +12,7 @@ import com.mimoza_app.notes.radzze.R
 import com.mimoza_app.notes.radzze.databinding.FragmentMainBinding
 import com.mimoza_app.notes.radzze.models.AppNote
 import com.mimoza_app.notes.radzze.utilits.APP_ACTIVITY
+import com.mimoza_app.notes.radzze.utilits.KEY_CLICK_NOTE
 
 class MainFragment : Fragment() {
 
@@ -43,7 +44,7 @@ class MainFragment : Fragment() {
         mViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         mViewModel.allNotes.observe(this,mObserver)
         mBinding.btnAddNote.setOnClickListener {
-            APP_ACTIVITY.mNavController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
+            APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
     }
 
@@ -61,6 +62,14 @@ class MainFragment : Fragment() {
         _binding=null
         mViewModel.allNotes.removeObserver(mObserver)
         rvMain.adapter = null
+    }
+
+    companion object{
+        fun onClickNote(note:AppNote){
+            val bundle = Bundle()
+            bundle.putSerializable(KEY_CLICK_NOTE,note)
+            APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_noteFragment,bundle)
+        }
     }
 
 }
