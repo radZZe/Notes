@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.note.NoteFragment">
-    <TextView
+    <EditText
+        android:backgroundTint="@android:color/transparent"
         android:id="@+id/note_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/app_large_text"
+        android:textSize="@dimen/et_title_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +21,8 @@
         android:textColor="@color/note_item_name_textColor"
         android:lines="1"/>
 
-    <TextView
+    <EditText
+        android:backgroundTint="@android:color/transparent"
         android:id="@+id/note_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

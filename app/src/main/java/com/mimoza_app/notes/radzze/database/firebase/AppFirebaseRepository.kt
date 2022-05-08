@@ -35,6 +35,10 @@ class AppFirebaseRepository:DatabaseRepository {
             .addOnFailureListener{ showToast(it.message.toString())}
     }
 
+    override suspend fun update(note: AppNote, onSuccess: () -> Unit) {
+        TODO("Not yet implemented")
+    }
+
     override fun connectToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {
         AUTH = FirebaseAuth.getInstance()
         AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)

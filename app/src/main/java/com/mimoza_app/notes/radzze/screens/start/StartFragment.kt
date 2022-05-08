@@ -33,10 +33,9 @@ class StartFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this)[StartFragmentViewModel::class.java]
-        mBinding.btnRoom.setOnClickListener{
-            mViewModel.initDatabase(TYPE_ROOM){
-                APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
-            }
+        mViewModel.initDatabase(TYPE_ROOM){
+            APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+
         }
         mBinding.btnFirebase.setOnClickListener{
             mBinding.inputEmail.visibility = View.VISIBLE

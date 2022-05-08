@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/constraint_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +8,10 @@
     tools:context=".screens.addnewnote.AddNewNoteFragment">
 
     <EditText
+        android:hint="@string/et_hint_title"
+        android:textSize="@dimen/et_title_size"
+        android:textStyle="bold"
+        android:backgroundTint="@android:color/transparent"
         android:id="@+id/edit_text_note_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,25 +19,14 @@
         tools:ignore="LabelFor"
         style="@style/edit_text_add_new_note" />
     <EditText
+        android:inputType="textMultiLine"
+        android:hint="@string/et_hint_text"
+        android:backgroundTint="@android:color/transparent"
         android:id="@+id/edit_text_note_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_note_name"
         tools:ignore="LabelFor"
         style="@style/edit_text_add_new_note" />
-
-    <Button
-        android:id="@+id/addNewNote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/app_margin"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
-        android:backgroundTint="@color/black"
-        android:text="@string/add_new_note_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_note_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

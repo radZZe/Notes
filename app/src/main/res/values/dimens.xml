@@ -5,6 +5,7 @@
     <dimen name="app_large_text">20sp</dimen>
     <dimen name="app_margin">16dp</dimen>
     <dimen name="app_normal_text">16sp</dimen>
-    <dimen name="float_vtn_elevation">5dp</dimen>
+    <dimen name="float_vtn_elevation">10dp</dimen>
     <dimen name="width_btn_room">250dp</dimen>
+    <dimen name="et_title_size">22sp</dimen>
 </resources>

@@ -1,10 +1,9 @@
 package com.mimoza_app.notes.radzze.screens.addnewnote
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.mimoza_app.notes.radzze.R
 import com.mimoza_app.notes.radzze.databinding.FragmentAddNewNoteBinding
@@ -33,20 +32,38 @@ class AddNewNoteFragment : Fragment() {
     }
 
     private fun initialization() {
+        setHasOptionsMenu(true)
         mViewModel = ViewModelProvider(this)[AddNewNoteFragmentViewModel::class.java]
-        mBinding.addNewNote.setOnClickListener{
-            val name = mBinding.editTextNoteName.text.toString()
-            val text = mBinding.editTextNoteText.text.toString()
-            if(name.isEmpty()){
-                showToast(getString(R.string.toast_enter_name))
-            }else{
-                mViewModel.insert(AppNote(name = name,text = text)){
-                    APP_ACTIVITY.navController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.save_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.save_btn ->{
+                var name = mBinding.editTextNoteName.text.toString()
+                var text = mBinding.editTextNoteText.text.toString()
+                if(name.isEmpty()){
+                    showToast(getString(R.string.toast_enter_name))
+                }else{
+                    mViewModel.insert(AppNote(name = name,text = text)){
+                        APP_ACTIVITY.navController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
+                    }
                 }
             }
         }
+        return super.onOptionsItemSelected(item)
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d("MyLog","onSaveInstanceState")
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

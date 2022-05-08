@@ -1,6 +1,9 @@
 package com.mimoza_app.notes.radzze.screens.note
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -35,8 +38,8 @@ class NoteFragment : Fragment() {
     private fun initialization() {
         setHasOptionsMenu(true)
         mViewModel = ViewModelProvider(this)[NoteFragmentViewModel::class.java]
-        mBinding.noteName.text = mCurrentNote.name
-        mBinding.noteText.text = mCurrentNote.text
+        mBinding.noteName.setText(mCurrentNote.name)
+        mBinding.noteText.setText(mCurrentNote.text)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -46,12 +49,43 @@ class NoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.delete_btn ->{
-                mViewModel.deleteItem(mCurrentNote){
+                showAlertDialog()
+            }
+            R.id.save_btn ->{
+                mCurrentNote.name = mBinding.noteName.text.toString()
+                mCurrentNote.text = mBinding.noteText.text.toString()
+                mViewModel.updateItem(mCurrentNote){
                     APP_ACTIVITY.navController.navigate(R.id.action_noteFragment_to_mainFragment)
                 }
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    private fun showAlertDialog(){
+        val listener = DialogInterface.OnClickListener{_,which ->
+            run {
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        mViewModel.deleteItem(mCurrentNote) {
+                            APP_ACTIVITY.navController.navigate(R.id.action_noteFragment_to_mainFragment)
+                        }
+                    }
+                    DialogInterface.BUTTON_NEGATIVE -> {}
+                }
+            }
+        }
+
+        val dialog = AlertDialog.Builder(this.context)
+            .setCancelable(false)
+            .setTitle("Удалить заметку ?")
+            .setMessage("Вы уверенны что хотите удалить заметку?")
+            .setPositiveButton("Yes",listener)
+            .setNegativeButton("No",listener)
+            .create()
+
+        dialog.show()
     }
 
     override fun onDestroyView() {

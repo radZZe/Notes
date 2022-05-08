@@ -11,6 +11,7 @@ import com.mimoza_app.notes.radzze.databinding.FragmentMainBinding
 import com.mimoza_app.notes.radzze.models.AppNote
 import com.mimoza_app.notes.radzze.utilits.APP_ACTIVITY
 import com.mimoza_app.notes.radzze.utilits.KEY_CLICK_NOTE
+import com.mimoza_app.notes.radzze.utilits.TYPE_ROOM
 
 class MainFragment : Fragment() {
 
@@ -34,33 +35,18 @@ class MainFragment : Fragment() {
     }
 
     private fun initialization(){
-        setHasOptionsMenu(true)
+        mViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
+        mViewModel.initDatabase(TYPE_ROOM)
         setupRecyclerView()
         mObserver = Observer{
             mainAdapter.submitList(it.asReversed())
         }
-        mViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         mViewModel.allNotes.observe(this,mObserver)
         mBinding.btnAddNote.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_menu,menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.exit_btn ->{
-                mViewModel.signOut()
-                APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
-
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     private fun setupRecyclerView(){
         rvMain = mBinding.rvMain

@@ -16,4 +16,11 @@ class NoteFragmentViewModel(application: Application):AndroidViewModel(applicati
         }
         onSuccess()
     }
+
+    fun updateItem(note:AppNote,onSuccess: () -> Unit){
+        viewModelScope.launch(Dispatchers.IO){
+            REPOSITORY.update(note){}
+        }
+        onSuccess()
+    }
 }
